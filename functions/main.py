@@ -22,13 +22,16 @@ import overpassGraph
 #c1.save()
 
 #os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "C:\\Users\\pablo\\AppData\\Roaming\\gcloud\\application_default_credentials.json"
+
+clientes = {"10154343916","10154351720","1155537579","1155537602","1425054312","2058832230"}
+
 @https_fn.on_request(region="europe-west1")
 def addPedido(req: https_fn.Request) -> https_fn.Response:
-    print(req)
     calleId = req
-    print("Hello")
+    if calleId not in clientes:
+        return https_fn.Response(f"Cliente no encontrado",status= 401)
     add_pedido(calleId)
-    return https_fn.Response(f"Message with ID  added.")
+    return https_fn.Response(f"Pedido agregado a la ruta.")
 
 
 @https_fn.on_request(region="europe-west1")
