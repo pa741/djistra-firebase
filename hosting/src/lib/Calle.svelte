@@ -5,6 +5,7 @@
 
     let { calle } = $props();
     let coords = JSON.parse(calle.geo);
+    let id = calle.id;
     let isWarehouse = calle.warehouse;
     let isClient = calle.client;
     let c = [];
@@ -13,7 +14,10 @@
     }
     let color = isWarehouse ? "red" : isClient ? "green" : "#3388ff";
 
-    console.log(c);
+    function handleClick() {
+        console.log("Clicked, id: ", id);
+    }
+    
 </script>
 
-<Polyline latLngs={c} options={{ color: color }} />
+<Polyline onclick={handleClick}  latLngs={c} options={{ color: color }} />

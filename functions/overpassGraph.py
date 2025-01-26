@@ -54,7 +54,7 @@ def CreateGraph():
             geoStr = str(geo['coordinates'])
             
         
-        c = Calle.make(nombre=name, nodosRefs=nodes, geo=geoStr)
+        c = Calle.make(nombre=name, nodosRefs=nodes, geo=geoStr, esRuta=False, esPedido=False)
         c.id = str(id)
         wayDict[id] = c
         if(not coords):
@@ -80,7 +80,7 @@ def CreateGraph():
         x = n[0]
         y = n[1]
         calles = nodesStreetDict[node]
-        nodo = Nodo.make(x=x, y=y, callesRefs=calles)
+        nodo = Nodo.make(x=x, y=y, callesRefs=calles, distancia=1000)
         nodo.id =  str(node)
         nodeDict[node] = nodo
         
